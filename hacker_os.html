@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker OS Simulator</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-darker: #000000;
+            --primary-neon: #00ff9f; /* green */
+            --secondary-neon: #00eaff; /* cyan */
+            --accent-red: #ff003c; /* red glitch */
+            --text-main: #e0e0e0;
+            --text-muted: #888888;
+            
+            --font-heading: 'Orbitron', sans-serif;
+            --font-body: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--bg-darker);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow: hidden; /* Prevent scrolling in OS view */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Matrix Background */
+        #matrix-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* OS Layout */
+        .os-container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Sidebar Commands */
+        .sidebar {
+            width: 250px;
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid rgba(0, 255, 159, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 15px rgba(0, 255, 159, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .os-title {
+            font-family: var(--font-heading);
+            color: var(--primary-neon);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px var(--primary-neon);
+            border-bottom: 1px solid rgba(0, 255, 159, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid #333;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(0, 255, 159, 0.1);
+            border-color: var(--primary-neon);
+            color: var(--primary-neon);
+            box-shadow: inset 0 0 10px rgba(0, 255, 159, 0.2);
+            text-shadow: 0 0 5px var(--primary-neon);
+        }
+
+        .nav-btn.danger:hover {
+            background: rgba(255, 0, 60, 0.1);
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+            box-shadow: inset 0 0 10px rgba(255, 0, 60, 0.2);
+            text-shadow: 0 0 5px var(--accent-red);
+        }
+
+        /* Main Terminal Area */
+        .main-view {
+            flex: 1;
+            background: rgba(5, 5, 5, 0.9);
+            border: 1px solid #333;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .terminal-header {
+            background: #111;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .terminal-header .btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .btn.red { background: #ff5f56; }
+        .btn.yellow { background: #ffbd2e; }
+        .btn.green { background: #27c93f; }
+
+        .terminal-title {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0 auto;
+            transform: translateX(-20px);
+        }
+
+        .terminal-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            color: var(--primary-neon);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .terminal-content p {
+            margin-bottom: 8px;
+        }
+
+        .typing-text::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .text-red { color: var(--accent-red); text-shadow: 0 0 5px var(--accent-red); }
+        .text-cyan { color: var(--secondary-neon); }
+        .text-white { color: #fff; }
+        .text-muted { color: var(--text-muted); }
+
+        /* Full Screen Alert Overlay */
+        .alert-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 0, 60, 0.15);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            animation: pulseBg 2s infinite;
+        }
+
+        @keyframes pulseBg {
+            0%, 100% { background: rgba(255, 0, 60, 0.1); }
+            50% { background: rgba(255, 0, 60, 0.3); }
+        }
+
+        .alert-box {
+            background: #000;
+            border: 2px solid var(--accent-red);
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(255, 0, 60, 0.5);
+        }
+
+        .alert-title {
+            font-family: var(--font-heading);
+            color: var(--accent-red);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--accent-red);
+            animation: glitch 0.3s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        .close-alert {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            padding: 10px 20px;
+            font-family: var(--font-body);
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .close-alert:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-darker); }
+        ::-webkit-scrollbar-thumb { background: #333; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-neon); }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="matrix-canvas"></canvas>
+    <div class="scanlines"></div>
+
+    <div class="os-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="os-title">
+                <i class="fas fa-skull"></i> HACKER OS<br><span style="font-size: 0.7rem; color: #888;">v5.0.1 ALPHA</span>
+            </div>
+            
+            <button class="nav-btn active" data-target="home"><i class="fas fa-terminal"></i> Dashboard</button>
+            <button class="nav-btn" data-target="tracker"><i class="fas fa-satellite-dish"></i> IP Tracker</button>
+            <button class="nav-btn" data-target="cracker"><i class="fas fa-key"></i> Brute Force</button>
+            <button class="nav-btn" data-target="leak"><i class="fas fa-database"></i> Database Leak</button>
+            <button class="nav-btn danger" data-target="destroy"><i class="fas fa-radiation"></i> SYSTEM BREACH</button>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="main-view">
+            <div class="terminal-header">
+                <span class="btn red"></span>
+                <span class="btn yellow"></span>
+                <span class="btn green"></span>
+                <span class="terminal-title" id="term-title">root@swagotom:~</span>
+            </div>
+            <div class="terminal-content" id="terminal-output">
+                <!-- Content injected dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Screen -->
+    <div class="alert-overlay" id="alert-screen">
+        <div class="alert-box">
+            <div class="alert-title">SYSTEM COMPROMISED</div>
+            <p style="color: white; font-family: monospace; font-size: 1.2rem;">All security protocols bypassed. Critical data exfiltrated.</p>
+            <button class="close-alert" id="close-alert-btn">REBOOT SYSTEM</button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Matrix Background ---
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const alphabet = '0123456789ABCDEF@#$%*'.split('');
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) drops[i] = 1;
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet[Math.floor(Math.random() * alphabet.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 35);
+
+
+        // --- Terminal Logic ---
+        const terminalOutput = document.getElementById('terminal-output');
+        const termTitle = document.getElementById('term-title');
+        let currentProcess = null;
+
+        const screens = {
+            home: `
+                <p class="text-cyan">==============================================</p>
+                <p class="text-white">  SWAGOTOM HACKER OS DASHBOARD ACTIVATED</p>
+                <p class="text-cyan">==============================================</p>
+                <br>
+                <p>[*] System checks: <span class="text-white">PASS</span></p>
+                <p>[*] Encrypted connection: <span class="text-white">ESTABLISHED</span></p>
+                <p>[*] Proxy chain: <span class="text-white">ACTIVE (7 Nodes)</span></p>
+                <br>
+                <p class="text-muted">> Select a module from the sidebar to begin operations.</p>
+                <p>> <span class="typing-text">_</span></p>
+            `,
+            loading: `<p>[*] Initializing module...</p><p>> <span class="typing-text">_</span></p>`
+        };
+
+        function setTerminalContent(html) {
+            terminalOutput.innerHTML = html;
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function loadScreen(target) {
+            // Stop any ongoing processes (like loops)
+            if(currentProcess) clearInterval(currentProcess);
+            terminalOutput.innerHTML = '';
+
+            switch(target) {
+                case 'home':
+                    termTitle.innerText = "root@swagotom:~";
+                    setTerminalContent(screens.home);
+                    break;
+                case 'tracker':
+                    termTitle.innerText = "ip_tracker.sh";
+                    runIPTracker();
+                    break;
+                case 'cracker':
+                    termTitle.innerText = "brute_force.exe";
+                    runCracker();
+                    break;
+                case 'leak':
+                    termTitle.innerText = "db_dump.sql";
+                    runDBLeak();
+                    break;
+                case 'destroy':
+                    termTitle.innerText = "rootkit_deploy.sh";
+                    runBreach();
+                    break;
+            }
+        }
+
+        // --- Simulated Tools ---
+
+        async function typeLines(lines, delay = 500) {
+            for(let line of lines) {
+                terminalOutput.innerHTML += `<p>${line}</p>`;
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                await new Promise(r => setTimeout(r, delay));
+            }
+        }
+
+        async function runIPTracker() {
+            setTerminalContent("");
+            const lines = [
+                "[*] Initializing Global Tracker System v4.0...",
+                "[*] Scanning local network...",
+                "[*] Bypassing ISP firewalls...",
+                "[*] Triangulating signal..."
+            ];
+            await typeLines(lines, 800);
+            
+            const ip = `${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}`;
+            
+            terminalOutput.innerHTML += `
+                <br>
+                <p class="text-red">[+] TARGET LOCATED</p>
+                <p>[+] IP Address: <span class="text-white">${ip}</span></p>
+                <p>[+] Location: <span class="text-white">New York, USA</span></p>
+                <p>[+] ISP: <span class="text-white">SecureNet Node 7</span></p>
+                <br>
+                <p class="text-cyan">>>> TARGET LOCKED <<<</p>
+                <p>> <span class="typing-text">_</span></p>
+            `;
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        async function runCracker() {
+            setTerminalContent("");
+            terminalOutput.innerHTML = `<p>[*] Initiating dictionary attack on target...</p><br>`;
+            
+            let attempts = 0;
+            currentProcess = setInterval(() => {
+                let pswd = Math.random().toString(36).slice(-8);
+                terminalOutput.innerHTML += `<p>Testing: ${pswd} <span class="text-red">[FAILED]</span></p>`;
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                attempts++;
+
+                if(attempts > 20) {
+                    clearInterval(currentProcess);
+                    terminalOutput.innerHTML += `
+                        <br>
+                        <p class="text-cyan">=================================</p>
+                        <p class="text-white">   PASSWORD FOUND: admin_sec_99  </p>
+                        <p class="text-cyan">=================================</p>
+                        <p>> <span class="typing-text">_</span></p>
+                    `;
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                }
+            }, 100);
+        }
+
+        async function runDBLeak() {
+            setTerminalContent("");
+            terminalOutput.innerHTML = `<p>[*] Accessing root database...</p><p>[*] Dumping tables...</p><br>`;
+            
+            currentProcess = setInterval(() => {
+                let id = Math.floor(Math.random() * 9000) + 1000;
+                let hash = Math.random().toString(16).slice(-10);
+                let bal = Math.floor(Math.random() * 50000);
+                terminalOutput.innerHTML += `<p>USER_ID: ${id} | HASH: ${hash} | BAL: $${bal} <span class="text-cyan">[EXTRACTED]</span></p>`;
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            }, 150);
+        }
+
+        async function runBreach() {
+            setTerminalContent("");
+            const lines = [
+                "<span class='text-red'>[!] WARNING: INITIATING SYSTEM BREACH</span>",
+                "[*] Injecting payload into kernel...",
+                "[*] Disabling antivirus...",
+                "[*] Overwriting boot sector..."
+            ];
+            await typeLines(lines, 1000);
+            
+            setTimeout(() => {
+                document.getElementById('alert-screen').style.display = 'flex';
+            }, 1000);
+        }
+
+        // --- UI Interactions ---
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                loadScreen(btn.getAttribute('data-target'));
+            });
+        });
+
+        document.getElementById('close-alert-btn').addEventListener('click', () => {
+            document.getElementById('alert-screen').style.display = 'none';
+            document.querySelector('[data-target="home"]').click(); // Return to home
+        });
+
+        // Init
+        loadScreen('home');
+
+    </script>
+</body>
+</html>
