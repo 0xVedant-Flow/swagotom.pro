@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swagotom | Cyber Security Expert & AI Security Specialist</title>
+    <meta name="description" content="Portfolio of Swagotom, Cyber Security Expert, AI Security Specialist, and Ethical Hacker.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Mouse Follow Light -->
+    <div id="cursor-glow"></div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="terminal-loader">
+            <span class="loader-text">Initializing System...</span><span class="cursor">_</span>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="loading-logs"></div>
+        </div>
+    </div>
+
+    <!-- Canvas Backgrounds -->
+    <canvas id="matrix-canvas"></canvas>
+    <canvas id="particles-canvas"></canvas>
+    <div class="video-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo glitch-text" data-text="SWAGOTOM">SWAGOTOM</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="Swagotom">Swagotom</h1>
+            <h2 class="typing-container">
+                <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+            </h2>
+            <div class="hero-buttons">
+                <a href="#projects" class="neon-button">View Projects</a>
+                <a href="#contact" class="neon-button secondary">Hire Me</a>
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="section about-section reveal">
+        <div class="container">
+            <h2 class="section-title glitch-text" data-text="< About_Me >">&lt; About_Me &gt;</h2>
+            <div class="about-grid">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <span class="btn red"></span>
+                        <span class="btn yellow"></span>
+                        <span class="btn green"></span>
+                        <span class="title">root@swagotom:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p><span class="prompt">swagotom@kali:~$</span> whoami</p>
+                        <p class="output">Cyber Security Expert & AI Security Specialist</p>
+                        <p><span class="prompt">swagotom@kali:~$</span> cat info.txt</p>
+                        <p class="output text-muted">I am an ethical hacker specializing in uncovering vulnerabilities in complex systems and securing AI implementations against adversarial attacks. With a deep understanding of offensive security and defensive engineering, I build robust, impenetrable architectures.</p>
+                        <p><span class="prompt">swagotom@kali:~$</span> <span class="blinking-cursor">_</span></p>
+                    </div>
+                </div>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Penetration Testing</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>AI Security</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Web Security</span>
+                            <span>98%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="98%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Social Engineering</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICES SECTION -->
+    <section id="services" class="section services-section reveal">
+        <div class="container">
+            <h2 class="section-title glitch-text" data-text="[ Services ]">[ Services ]</h2>
+            <div class="services-grid">
+                <div class="service-card" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Web App Penetration Testing</h3>
+                    <p>Deep-dive vulnerability assessments identifying OWASP Top 10 and zero-day flaws in enterprise applications.</p>
+                </div>
+                <div class="service-card" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="service-icon"><i class="fas fa-brain"></i></div>
+                    <h3>AI Security Audits</h3>
+                    <p>Evaluating AI models for prompt injection, data poisoning, and model inversion vulnerabilities.</p>
+                </div>
+                <div class="service-card" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="service-icon"><i class="fas fa-bug"></i></div>
+                    <h3>Bug Bounty Hunting</h3>
+                    <p>Continuous discovery and disclosure of critical vulnerabilities to secure global infrastructures.</p>
+                </div>
+                <div class="service-card" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3>OSINT Investigation</h3>
+                    <p>Advanced open-source intelligence gathering for threat profiling and digital footprint analysis.</p>
+                </div>
+                <div class="service-card" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="service-icon"><i class="fas fa-user-secret"></i></div>
+                    <h3>Security Consulting</h3>
+                    <p>Strategic guidance to fortify organizational defenses, ensure compliance, and build security culture.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="service-card" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                    <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Cloud Security Architecture</h3>
+                    <p>Designing secure, zero-trust cloud environments for AWS and Azure ecosystems to prevent breaches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROJECTS / PORTFOLIO SECTION -->
+    <section id="projects" class="section projects-section reveal">
+        <div class="container">
+            <h2 class="section-title glitch-text" data-text="./Projects">./Projects</h2>
+            
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ai-security">AI Security</button>
+                <button class="filter-btn" data-filter="web-security">Web Security</button>
+                <button class="filter-btn" data-filter="tools">Tools</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="tools">
+                    <div class="project-image">
+                        <div class="overlay-glitch"></div>
+                        <img src="img1.png" alt="AutoPwn Framework" class="project-bg-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>AutoPwn Framework</h3>
+                        <p>An automated reconnaissance and exploitation framework designed for red teaming.</p>
+                        <div class="project-tags">
+                            <span class="tag">Tools</span>
+                            <span class="tag">Exploit</span>
+                        </div>
+                        <button class="view-details-btn neon-button-small" data-project='{"title": "AutoPwn Framework", "desc": "An automated reconnaissance and exploitation framework designed for red teaming. It automates identifying open ports, running vulnerability scans, and dynamically selecting exploits from a centralized database. <br><br><b>Technologies:</b> Python, Bash, Metasploit RPC, Nmap API", "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"}'>View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card" data-category="ai-security">
+                    <div class="project-image">
+                        <div class="overlay-glitch"></div>
+                        <img src="img2.png" alt="LLM Firewall" class="project-bg-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>LLM Firewall</h3>
+                        <p>A proxy layer filtering malicious prompts and detecting prompt injection attacks on AI APIs.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI Security</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <button class="view-details-btn neon-button-small" data-project='{"title": "LLM Firewall", "desc": "A proxy layer filtering malicious prompts and detecting prompt injection attacks on AI APIs. Utilizes heuristic analysis and a secondary evaluating model to sandbox queries before sending them to the core LLM processing engine.<br><br><b>Technologies:</b> Node.js, Python, OpenAI API, Redis", "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"}'>View Details</button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="web-security">
+                    <div class="project-image">
+                        <div class="overlay-glitch"></div>
+                        <img src="img3.png" alt="Zero-Trust Auth System" class="project-bg-img">
+                    </div>
+                    <div class="project-content">
+                        <h3>Zero-Trust Auth System</h3>
+                        <p>Distributed authentication system adopting zero-trust principles and granular RBAC.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web Security</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <button class="view-details-btn neon-button-small" data-project='{"title": "Zero-Trust Auth System", "desc": "Distributed authentication system adopting zero-trust principles and granular RBAC. Implements dynamic device fingerprinting, behavioral analysis, and continuous re-authentication without relying solely on perimeter defenses.<br><br><b>Technologies:</b> Node.js, JWT, Redis, Go", "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"}'>View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Popup for Projects -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content terminal-window">
+            <div class="terminal-header">
+                <span class="btn red close-modal"></span>
+                <span class="btn yellow"></span>
+                <span class="btn green"></span>
+                <span class="title" id="modal-title">Project Details</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. BLOG PREVIEW SECTION -->
+    <section id="blog" class="section blog-section reveal">
+        <div class="container">
+            <h2 class="section-title glitch-text" data-text="Logs_&_Transmissions">Logs_&_Transmissions</h2>
+            <div class="blog-grid">
+                <div class="blog-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="blog-date">March 25, 2026</div>
+                    <h3>Bypassing Modern WAFs using Obfuscation Techniques</h3>
+                    <p>A deep dive into how modern Web Application Firewalls can be bypassed utilizing advanced encoding and payload mutation.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="blog-date">March 12, 2026</div>
+                    <h3>The Rise of AI-Powered Malware</h3>
+                    <p>Analyzing how adversaries are beginning to leverage Large Language Models to generate polymorphic malicious code.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="blog-date">February 28, 2026</div>
+                    <h3>Zero-Click Exploit Analysis</h3>
+                    <p>Deconstructing a recent high-profile zero-click vulnerability in secure messaging applications.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONTACT SECTION -->
+    <section id="contact" class="section contact-section reveal">
+        <div class="container">
+            <h2 class="section-title glitch-text" data-text="Initiate_Connection">Initiate_Connection</h2>
+            
+            <div class="contact-grid">
+                
+                <!-- Business Card Style -->
+                <div class="contact-info-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                    <div class="card-glitch-border"></div>
+                    <i class="fas fa-fingerprint contact-bg-icon"></i>
+                    <h3>Direct Comm Channels</h3>
+                    <p class="text-muted">Currently open for red teaming operations, security audits, and specialized consultations. Establish a secure connection below.</p>
+                    
+                    <div class="contact-links-grid">
+                        <a href="https://github.com/0xVedant-Flow" target="_blank" class="contact-btn">
+                            <i class="fab fa-github"></i> <span class="cb-text">GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/0xVedantFlow" target="_blank" class="contact-btn">
+                            <i class="fab fa-linkedin-in"></i> <span class="cb-text">LinkedIn</span>
+                        </a>
+                        <a href="https://x.com/0xVedantFlow" target="_blank" class="contact-btn">
+                            <i class="fab fa-twitter"></i> <span class="cb-text">Twitter / X</span>
+                        </a>
+                        <a href="mailto:hello@swagotom.pro" class="contact-btn">
+                            <i class="fas fa-envelope"></i> <span class="cb-text">hello@swagotom.pro</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Fake System Status Terminal -->
+                <div class="terminal-window network-status">
+                    <div class="terminal-header">
+                        <span class="btn red"></span>
+                        <span class="btn yellow"></span>
+                        <span class="btn green"></span>
+                        <span class="title">network_monitor.sh</span>
+                    </div>
+                    <div class="terminal-body" id="network-terminal">
+                        <p>> Ping Swagotom_Node...</p>
+                        <p class="output" style="color:var(--primary-neon);">[OK] Node Active.</p>
+                        <p>> Fetching public keys...</p>
+                        <p class="output text-muted">RSA 4096-bit key retrieved.</p>
+                        <p>> Connection status:</p>
+                        <p class="output glitch-text" data-text="AWAITING HANDSHAKE..." style="color:var(--secondary-neon);">AWAITING HANDSHAKE...</p>
+                        <p>> <span class="blinking-cursor">_</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="cyber-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/0xVedant-Flow" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/0xVedantFlow" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/0xVedantFlow" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="copyright">© 2026 Swagotom | Cyber Security Expert & AI Security Specialist</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Vanilla Tilt for 3D hover effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
