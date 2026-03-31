@@ -1,76 +1,35 @@
-// --- Loading Screen & Initializing Sequence ---
-window.addEventListener('load', () => {
+// --- Cinematic Loading Screen & Initializing Sequence ---
+document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.getElementById('loading-screen');
-    const progressBar = document.querySelector('.progress-bar');
-    const logsContainer = document.querySelector('.loading-logs');
-    
     const logs = [
-        "Initializing kernel...",
-        "Loading rootkit modules...",
-        "Establishing secure connection to mainframe...",
-        "Bypassing firewall protocols...",
-        "Access granted. Welcome, Swagotom."
+        document.getElementById('cinematic-1'),
+        document.getElementById('cinematic-2'),
+        document.getElementById('cinematic-3')
     ];
+    
+    setTimeout(() => {
+        if(logs[0]) logs[0].classList.add('visible');
+    }, 300);
 
-    let progress = 0;
-    let logIndex = 0;
-
-    const interval = setInterval(() => {
-        progress += Math.floor(Math.random() * 20) + 10;
-        if(progress > 100) progress = 100;
-        progressBar.style.width = `${progress}%`;
-
-        if(progress % 20 < 15 && logIndex < logs.length) {
-            const p = document.createElement('p');
-            p.textContent = `> ${logs[logIndex]}`;
-            logsContainer.appendChild(p);
-            logIndex++;
-            logsContainer.scrollTop = logsContainer.scrollHeight;
-        }
-
-        if(progress === 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    initTyping();
-                    animateSkillBars(); // Only animate when visible
-                }, 500);
-            }, 800);
-        }
-    }, 200);
+    setTimeout(() => {
+        if(logs[1]) logs[1].classList.add('visible');
+    }, 1200);
+    
+    setTimeout(() => {
+        if(logs[2]) logs[2].classList.add('visible');
+    }, 2200);
+    
+    setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            initTyping();
+            animateSkillBars(); // Only animate when visible
+        }, 1000);
+    }, 3200);
 });
 
-// --- Mouse Follow Light / Cursor Glow ---
-const cursorGlow = document.getElementById('cursor-glow');
-const isMobile = window.innerWidth <= 768;
 
-if(!isMobile) {
-    document.addEventListener('mousemove', (e) => {
-        // Request animation frame for smooth movement
-        requestAnimationFrame(() => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
-        });
-    });
-
-    // Add interactive glow on clickable elements
-    const interactables = document.querySelectorAll('a, button, .project-card, .service-card, .blog-card');
-    interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            if(el.classList.contains('red') || el.classList.contains('close-modal')) {
-                cursorGlow.classList.add('interactive-danger');
-            } else {
-                cursorGlow.classList.add('interactive');
-            }
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorGlow.classList.remove('interactive');
-            cursorGlow.classList.remove('interactive-danger');
-        });
-    });
-}
 
 // --- Navigation Scroll Effect & Mobile Menu ---
 const navbar = document.querySelector('.navbar');
@@ -130,10 +89,9 @@ window.addEventListener('scroll', () => {
 
 // --- Typing Animation (Hero Section) ---
 const phrases = [
-    "Cyber Security Expert",
-    "AI Security Specialist",
-    "Ethical Hacker",
-    "Vulnerability Researcher"
+    "I Secure Systems.",
+    "I Break Weaknesses.",
+    "I Build AI Defense."
 ];
 let currentPhraseIndex = 0;
 let currentCharIndex = 0;
@@ -160,15 +118,15 @@ function type() {
         currentCharIndex++;
     }
 
-    let typeSpeed = isDeleting ? 40 : 100;
+    let typeSpeed = isDeleting ? 30 : 80;
 
     if(!isDeleting && currentCharIndex === currentPhrase.length) {
-        typeSpeed = 2500; // Pause at end of phrase
+        typeSpeed = 1500; // Pause at end of phrase
         isDeleting = true;
     } else if(isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-        typeSpeed = 400; // Pause before new phrase
+        typeSpeed = 300; // Pause before new phrase
     }
 
     setTimeout(type, typeSpeed);
@@ -184,13 +142,16 @@ function initMatrix() {
 }
 initMatrix();
 
-const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
+const katakana = '01';
+const latin = '010101111000';
+const nums = '0123456789ABCDEF!@#$%&*';
 const alphabet = katakana + latin + nums;
 
-const fontSize = 16;
+const fontSize = window.innerWidth <= 768 ? 20 : 16;
 let columns = matrixCanvas.width / fontSize;
+if (window.innerWidth <= 768) {
+    columns = Math.min(columns, 30); // Less columns on mobile
+}
 let drops = [];
 
 for(let x = 0; x < columns; x++) {
@@ -223,9 +184,13 @@ setInterval(drawMatrix, 35);
 
 // --- Interactive Particles Background ---
 const particlesCanvas = document.getElementById('particles-canvas');
-const pCtx = particlesCanvas.getContext('2d');
+let pCtx;
+if(particlesCanvas) {
+    pCtx = particlesCanvas.getContext('2d');
+}
 
 function initParticlesSize() {
+    if(!particlesCanvas) return;
     particlesCanvas.width = window.innerWidth;
     particlesCanvas.height = window.innerHeight;
 }
@@ -300,7 +265,7 @@ function initParticles() {
     
     // Cap for performance
     if(numberOfParticles > 150) numberOfParticles = 150;
-    if(isMobile) numberOfParticles = 50;
+    if(window.innerWidth <= 768) numberOfParticles = 50;
 
     for(let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 2) + 0.5;
@@ -433,19 +398,23 @@ viewDetailsBtns.forEach(btn => {
     });
 });
 
-closeModal.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Restore scrolling
-    setTimeout(() => modalBody.innerHTML = '', 300); // Clear content after transition
-});
-
-modal.addEventListener('click', (e) => {
-    if(e.target === modal) {
+if(closeModal) {
+    closeModal.addEventListener('click', () => {
         modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        setTimeout(() => modalBody.innerHTML = '', 300);
-    }
-});
+        document.body.style.overflow = 'auto'; // Restore scrolling
+        setTimeout(() => modalBody.innerHTML = '', 300); // Clear content after transition
+    });
+}
+
+if(modal) {
+    modal.addEventListener('click', (e) => {
+        if(e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => modalBody.innerHTML = '', 300);
+        }
+    });
+}
 
 // --- Fake Network Terminal ---
 function initNetworkTerminal() {
@@ -493,3 +462,33 @@ window.addEventListener('scroll', () => {
         initNetworkTerminal();
     }
 });
+
+// --- Security & Anti-Inspect (Hacker Theme) ---
+document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+    console.log("%c[ACCESS DENIED] Unauthorized inspection attempt logged.", "color: #ff003c; font-size: 20px; font-weight: bold; background: #000; padding: 10px; border: 1px solid #ff003c;");
+});
+
+document.addEventListener('keydown', e => {
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J, Ctrl+U
+    if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+        console.log("%c[SECURITY ALERT] Key combination blocked.", "color: #00ff9f; font-size: 16px;");
+    }
+});
+
+// --- Scroll Reveal ---
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var j = 0; j < reveals.length; j++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[j].getBoundingClientRect().top;
+        var elementVisible = 50;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[j].classList.add("active");
+        }
+    }
+}
+window.addEventListener("scroll", reveal);
+reveal();

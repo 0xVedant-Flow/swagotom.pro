@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swagotom | Cyber Security Expert & AI Security Specialist</title>
     <meta name="description" content="Portfolio of Swagotom, Cyber Security Expert, AI Security Specialist, and Ethical Hacker.">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https:; font-src 'self' https: data:; media-src 'self' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -12,17 +15,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Mouse Follow Light -->
-    <div id="cursor-glow"></div>
-
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="terminal-loader">
-            <span class="loader-text">Initializing System...</span><span class="cursor">_</span>
-            <div class="progress-bar-container">
-                <div class="progress-bar"></div>
-            </div>
-            <div class="loading-logs"></div>
+    <!-- Cinematic Loading Screen -->
+    <div id="loading-screen" class="cinematic-intro">
+        <div class="cinematic-text-container">
+            <p id="cinematic-1">> Initializing...</p>
+            <p id="cinematic-2">> Bypassing Firewall...</p>
+            <p id="cinematic-3" class="highlight-text">> Access Granted</p>
         </div>
     </div>
 
@@ -30,6 +28,7 @@
     <canvas id="matrix-canvas"></canvas>
     <canvas id="particles-canvas"></canvas>
     <div class="video-overlay"></div>
+    <div class="scanlines"></div>
     
     <!-- Navigation -->
     <nav class="navbar">
@@ -38,28 +37,55 @@
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="course.html" class="highlight-link">Training</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
     </nav>
 
-    <!-- 1. HERO SECTION -->
-    <section id="hero" class="hero-section">
-        <div class="hero-content">
-            <h1 class="glitch" data-text="Swagotom">Swagotom</h1>
-            <h2 class="typing-container">
+    <!-- 1. CINEMATIC HERO SECTION -->
+    <section id="hero" class="hero-section premium-hero parallax-container">
+        
+        <div class="hero-content parallax-content">
+            <div class="top-small-text flickering">ACCESSING SECURE SYSTEM...</div>
+            
+            <h1 class="glitch giant-name" data-text="SWAGOTOM">SWAGOTOM</h1>
+            
+            <h2 class="subtitle-type">
                 <span class="typed-text"></span><span class="cursor">&nbsp;</span>
             </h2>
-            <div class="hero-buttons">
-                <a href="#projects" class="neon-button">View Projects</a>
-                <a href="#contact" class="neon-button secondary">Hire Me</a>
+            
+            <div class="hero-layout">
+                <div class="terminal-window hero-terminal" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.1">
+                    <div class="terminal-header">
+                        <span class="btn red"></span><span class="btn yellow"></span><span class="btn green"></span>
+                        <span class="title">sys_profile.exe</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p>> initializing profile...</p>
+                        <p>> name: <span style="color:var(--primary-neon);">Swagotom</span></p>
+                        <p>> role: <span style="color:var(--secondary-neon);">Cyber Security Expert</span></p>
+                        <p>> specialization: AI Security | Ethical Hacking</p>
+                        <p>> status: <span style="color:var(--primary-neon); text-shadow: 0 0 5px var(--primary-neon);">[ACTIVE]</span></p>
+                        <p>> <span class="blinking-cursor">_</span></p>
+                    </div>
+                </div>
+
+                <div class="hero-buttons-col">
+                    <a href="#projects" class="neon-button cyber-pulse">View Projects</a>
+                    <a href="course.html" class="neon-button secondary cyber-pulse">Join Training</a>
+                </div>
             </div>
         </div>
-        <a href="#about" class="scroll-indicator">
-            <span></span>
-            <span></span>
-            <span></span>
+        
+        <a href="#about" class="scroll-indicator-neon">
+            <span class="scroll-text flickering">SCROLL DOWN</span>
+            <div class="arrow-container">
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </a>
     </section>
 
@@ -174,7 +200,7 @@
                 <div class="project-card" data-category="tools">
                     <div class="project-image">
                         <div class="overlay-glitch"></div>
-                        <img src="img1.png" alt="AutoPwn Framework" class="project-bg-img">
+                        <img src="img1.png" alt="AutoPwn Framework" class="project-bg-img" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>AutoPwn Framework</h3>
@@ -191,7 +217,7 @@
                 <div class="project-card" data-category="ai-security">
                     <div class="project-image">
                         <div class="overlay-glitch"></div>
-                        <img src="img2.png" alt="LLM Firewall" class="project-bg-img">
+                        <img src="img2.png" alt="LLM Firewall" class="project-bg-img" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>LLM Firewall</h3>
@@ -208,7 +234,7 @@
                 <div class="project-card" data-category="web-security">
                     <div class="project-image">
                         <div class="overlay-glitch"></div>
-                        <img src="img3.png" alt="Zero-Trust Auth System" class="project-bg-img">
+                        <img src="img3.png" alt="Zero-Trust Auth System" class="project-bg-img" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>Zero-Trust Auth System</h3>
@@ -317,6 +343,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="terminal-header" style="margin-bottom: 0;">
+                <span class="btn red close-modal"></span><span class="btn yellow"></span><span class="btn green"></span>
+                <span class="title" id="modal-title">Project Details</span>
+            </div>
+            <div class="modal-body">
+                <!-- Data injected by JS -->
+            </div>
+        </div>
+    </div>
 
     <!-- 7. FOOTER -->
     <footer class="cyber-footer">
