@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows CMD Hacker Tricks | Swagotom</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-post-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+        .blog-post-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--primary-neon);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+        }
+        .blog-content {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(0, 255, 159, 0.2);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-bottom: 4rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .blog-content h2, .blog-content h3 {
+            color: var(--secondary-neon);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+        }
+        .blog-content p, .blog-content li {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-family: var(--font-body);
+        }
+        .blog-content .emoji-heading {
+            color: var(--primary-neon);
+        }
+        .blog-content pre {
+            background: #000;
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-left: 3px solid var(--primary-neon);
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            color: var(--primary-neon);
+        }
+        .blog-content code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .warning-box {
+            border: 1px solid var(--accent-red);
+            background: rgba(255, 0, 60, 0.1);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+            color: var(--text-main);
+        }
+        .back-nav {
+            padding: 2rem;
+            position: absolute;
+            top: 0; left: 0; z-index: 10;
+        }
+        .back-btn {
+            color: var(--secondary-neon); 
+            text-decoration: none; 
+            font-size: 1rem;
+            font-family: var(--font-heading); 
+            display: inline-flex; 
+            align-items: center; gap: 10px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: var(--primary-neon); text-shadow: 0 0 10px var(--primary-neon); transform: translateX(-5px); }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="video-overlay"></div>
+    <div class="scanlines"></div>
+
+    <nav class="back-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETURN TO MAIN_TERM</a>
+    </nav>
+
+    <header class="blog-post-header reveal">
+        <div class="top-small-text flickering">TRANSMISSION RECEIVED: APRIL 2026</div>
+        <h1 class="glitch-text blog-post-title" data-text="Windows CMD Hacker Tricks">Windows CMD Hacker Tricks</h1>
+        <h2 class="subtitle-type">Learn how to create cinematic hacker effects with simple CMD commands.</h2>
+    </header>
+
+    <div class="container reveal">
+        <div class="blog-content">
+            <p>Windows CMD দিয়ে অনেক fun + hacker vibe জিনিস করা যায় 😎 নিচে কিছু মজার কমান্ড দিলাম—Demo class বা বন্ধুদের দেখালে একদম 🔥 লাগবে:</p>
+            
+            <h2 class="emoji-heading">🟢 1. Matrix Hacker Screen (Green Code Effect)</h2>
+            <pre><code>color 0a
+dir /s</code></pre>
+            <p>👉 পুরো স্ক্রিনে সবুজ লেখা দিয়ে ফাইল লিস্ট চলতে থাকবে — একদম hacker movie vibe 😎</p>
+
+            <h2 class="emoji-heading">🟢 2. Fake Virus Message 😈</h2>
+            <pre><code>msg * Warning! Your system is hacked!</code></pre>
+            <p>👉 Network এ থাকলে popup দেখাবে — prank করার জন্য best 😂</p>
+
+            <h2 class="emoji-heading">🟢 3. Infinite Text Spam 🤯</h2>
+            <pre><code>:a
+start notepad
+goto a</code></pre>
+            <p>👉 অনেকগুলো Notepad খুলে যাবে 😆 (Task Manager ছাড়া বন্ধ করা কঠিন)</p>
+
+            <h2 class="emoji-heading">🟢 4. Color Changing CMD 🌈</h2>
+            <pre><code>color 1f</code></pre>
+            <p>👉 Background + text color change<br>👉 Try: color 4f, color 2a, color 0e</p>
+
+            <h2 class="emoji-heading">🟢 5. Tree Structure View 🌳</h2>
+            <pre><code>tree</code></pre>
+            <p>👉 Folder structure tree আকারে দেখাবে — খুব cool লাগে</p>
+
+            <h2 class="emoji-heading">🟢 6. Star Wars Movie (Hidden Feature 🤯)</h2>
+            <pre><code>telnet towel.blinkenlights.nl</code></pre>
+            <p>👉 CMD তে Star Wars ASCII movie চলে 😍<br>⚠️ Telnet enable করতে হবে আগে</p>
+
+            <h2 class="emoji-heading">🟢 7. Talking Computer 🗣️</h2>
+            <pre><code>echo CreateObject("SAPI.SpVoice").Speak "I am a hacker" > speak.vbs
+start speak.vbs</code></pre>
+            <p>👉 Computer নিজে কথা বলবে 😎</p>
+
+            <h2 class="emoji-heading">🟢 8. Shutdown Prank Timer ⏳</h2>
+            <pre><code>shutdown -s -t 60</code></pre>
+            <p>👉 60 সেকেন্ড পরে PC shutdown<br>👉 Cancel করতে: <br><code>shutdown -a</code></p>
+
+            <h2 class="emoji-heading">🟢 9. Internet Speed Check (Ping Flood 느낌)</h2>
+            <pre><code>ping google.com -t</code></pre>
+            <p>👉 Continuous ping — network test + hacker vibe</p>
+
+            <h2 class="emoji-heading">🟢 10. System Info Hack Style 🖥️</h2>
+            <pre><code>systeminfo</code></pre>
+            <p>👉 পুরো PC info hacker style এ দেখাবে 🔥</p>
+
+            <h3>🔥 Bonus Demo Idea (Class এ দেখানোর জন্য)</h3>
+            <p>👉 CMD খুলে:</p>
+            <pre><code>color 0a
+echo Connecting to server...
+ping localhost -n 5
+echo Access Granted!</code></pre>
+            <p>👉 একদম fake hacking simulation 😎</p>
+
+            <div class="warning-box">
+                <h3 style="margin-top:0; color:var(--accent-red)">⚠️ Warning:</h3>
+                <p>কিছু কমান্ড (যেমন Notepad spam, shutdown) prank হিসেবে use করো — real কাজে সমস্যা করতে পারে।</p>
+            </div>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">🔥 Hacker Demo Script (.bat file)</h2>
+            <p>চল একদম 🔥 Hacker Demo Script (.bat file) বানাই — তুমি এটা Demo class এ চালালে সবাই অবাক হয়ে যাবে 😎</p>
+
+            <h3>🟢 📂 Step 1: Notepad খুলে নিচের কোডটা paste করো</h3>
+            <pre><code>@echo off
+title SYSTEM HACK SIMULATION
+color 0a
+
+echo Initializing Hack Tool...
+ping localhost -n 2 >nul
+
+echo Connecting to Dark Server...
+ping localhost -n 2 >nul
+
+echo Bypassing Firewall...
+ping localhost -n 2 >nul
+
+echo Accessing Secure Database...
+ping localhost -n 2 >nul
+
+echo Injecting Payload...
+ping localhost -n 2 >nul
+
+echo.
+echo ===============================
+echo     ACCESS GRANTED 😈
+echo ===============================
+echo.
+
+pause
+
+:: Talking Voice
+echo Set voice = CreateObject("SAPI.SpVoice") > voice.vbs
+echo voice.Speak "System hacked successfully" >> voice.vbs
+start voice.vbs
+
+:: Fake File Scan
+echo Scanning Files...
+dir /s
+pause
+
+:: Open Notepad prank (optional)
+start notepad
+
+:: Shutdown prank (comment out if not needed)
+:: shutdown -s -t 30
+
+exit</code></pre>
+
+            <h3>🟢 📂 Step 2: Save করার নিয়ম</h3>
+            <ul>
+                <li>👉 File → Save As</li>
+                <li>👉 File name: <code>hacker_demo.bat</code></li>
+                <li>👉 Save as type: All Files</li>
+                <li>👉 Encoding: ANSI / UTF-8</li>
+            </ul>
+
+            <h3>🟢 🧠 Demo করার স্টাইল (Hacker Vibe 😎)</h3>
+            <p>তুমি বলবে:</p>
+            <p><em>"Now I am connecting to a secure server... firewall bypass চলছে... payload inject হচ্ছে..."</em></p>
+            <ul>
+                <li>👉 তারপর script রান করো</li>
+                <li>👉 শেষে যখন “ACCESS GRANTED” আসবে → audience 😲</li>
+            </ul>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">🖥️ Full screen mode hacker UI</h2>
+            <p>চল এবার একদম 🔥 Full Screen Hacker UI (.bat script) বানাই — একদম movie-level vibe 😎</p>
+
+            <h3>🟢 📂 Step 1: নিচের কোডটা copy করো</h3>
+            <pre><code>@echo off
+title SECURE SYSTEM TERMINAL
+mode con: cols=120 lines=30
+color 0a
+
+:: Full screen (maximize window)
+powershell -command "&{$host.ui.rawui.WindowTitle = 'HACKER TERMINAL'; $wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('%{ENTER}') }"
+
+:START
+cls
+echo ============================================================
+echo              SECURE ACCESS TERMINAL v3.5
+echo ============================================================
+echo.
+echo [*] Initializing system...
+ping localhost -n 2 >nul
+
+echo [*] Connecting to remote server...
+ping localhost -n 2 >nul
+
+echo [*] Encrypting connection...
+ping localhost -n 2 >nul
+
+echo [*] Bypassing firewall...
+ping localhost -n 2 >nul
+
+echo [*] Cracking password...
+call :loading
+
+echo [*] Accessing database...
+ping localhost -n 2 >nul
+
+echo.
+echo ==========================================
+echo        >>> ACCESS GRANTED <<<
+echo ==========================================
+echo.
+
+:: Voice effect
+echo Set voice = CreateObject("SAPI.SpVoice") > voice.vbs
+echo voice.Speak "Access Granted. Welcome Hacker." >> voice.vbs
+start voice.vbs
+
+pause
+exit
+
+:loading
+echo.
+setlocal enabledelayedexpansion
+set "bar="
+
+for /l %%i in (1,1,20) do (
+    set "bar=!bar!#"
+    cls
+    echo ======================================
+    echo        PASSWORD CRACKING...
+    echo ======================================
+    echo.
+    echo [!bar!....................]
+    ping localhost -n 1 >nul
+)
+endlocal
+exit /b</code></pre>
+
+            <h3>🟢 📂 Step 2: Save করো</h3>
+            <ul>
+                <li>👉 File Name: <code>hacker_fullscreen.bat</code></li>
+                <li>👉 Save as type: All Files</li>
+            </ul>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">🌍 Fake IP tracking</h2>
+            <p>চল 🔥 Fake IP Tracking Hacker UI (.bat script) বানাই — Demo class এ একদম cinematic hacker feel 😎</p>
+            <pre><code>@echo off
+title TRACKING TARGET...
+mode con: cols=120 lines=30
+color 0a
+
+:: Fullscreen feel
+powershell -command "&{$wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('%{ENTER}') }"
+
+:START
+cls
+echo ============================================================
+echo              GLOBAL TRACKING SYSTEM v4.0
+echo ============================================================
+echo.
+
+echo [*] Initializing Tracker Engine...
+ping localhost -n 2 >nul
+
+echo [*] Scanning Network...
+ping localhost -n 2 >nul
+
+echo [*] Detecting Target IP...
+ping localhost -n 2 >nul
+
+:: Fake IP generate
+set /a a=%random% %% 255
+set /a b=%random% %% 255
+set /a c=%random% %% 255
+set /a d=%random% %% 255
+
+echo.
+echo [+] TARGET IP FOUND: %a%.%b%.%c%.%d%
+echo.
+
+ping localhost -n 2 >nul
+
+echo [*] Tracing Location...
+ping localhost -n 2 >nul
+
+echo [+] COUNTRY: UNITED STATES
+echo [+] CITY: NEW YORK
+echo [+] ISP: DARKNET SECURE NODE
+echo [+] STATUS: TRACKED
+
+ping localhost -n 2 >nul
+
+echo.
+echo ==========================================
+echo        >>> TARGET LOCKED <<<
+echo ==========================================
+echo.
+
+:: Voice effect
+echo Set voice = CreateObject("SAPI.SpVoice") > voice.vbs
+echo voice.Speak "Target successfully tracked." >> voice.vbs
+start voice.vbs
+
+pause
+exit</code></pre>
+            <p>👉 File Name: <code>ip_tracker_demo.bat</code></p>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">🖥️ Multiple terminal windows</h2>
+            <pre><code>@echo off
+title HACKER MULTI TERMINAL LAUNCHER
+color 0a
+
+echo Launching multiple terminals...
+ping localhost -n 2 >nul
+
+:: Window 1 - IP Tracker
+start cmd /k "color 0a && title IP TRACKER && echo Tracking Target... && ping localhost -t"
+
+:: Window 2 - System Scan
+start cmd /k "color 0a && title SYSTEM SCAN && systeminfo && pause"
+
+:: Window 3 - Network Ping
+start cmd /k "color 0a && title NETWORK MONITOR && ping google.com -t"
+
+:: Window 4 - Directory Flood
+start cmd /k "color 0a && title FILE SCAN && dir /s"
+
+:: Window 5 - Fake Access Panel
+start cmd /k "color 0a && title ACCESS TERMINAL && echo Accessing Secure Server... && ping localhost -n 5 && echo ACCESS GRANTED && pause"
+
+:: Window 6 - Matrix Style
+start cmd /k "color 0a && title MATRIX MODE && dir /s"
+
+echo.
+echo All terminals launched 😈
+pause
+exit</code></pre>
+            <p>👉 File Name: <code>multi_terminal_hack.bat</code></p>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">💀 Fake database leak screen</h2>
+            <pre><code>@echo off
+title DATABASE BREACH DETECTED
+mode con: cols=120 lines=30
+color 0a
+
+:: Fullscreen feel
+powershell -command "&{$wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('%{ENTER}') }"
+
+:START
+cls
+echo ============================================================
+echo              SECURE DATABASE SERVER
+echo ============================================================
+echo.
+
+echo [*] Connecting to encrypted database...
+ping localhost -n 2 >nul
+
+echo [*] Bypassing security layers...
+ping localhost -n 2 >nul
+
+echo [*] Dumping database...
+ping localhost -n 2 >nul
+
+echo.
+echo ================== DATA LEAK IN PROGRESS ====================
+echo.
+
+:: Fake Data Leak Loop
+:LOOP
+set /a id=%random% %% 9999
+set /a money=%random% %% 10000
+
+echo ID: %id% ^| USER: user%id% ^| PASS: pass%id% ^| BALANCE: $%money%
+ping localhost -n 1 >nul
+goto LOOP</code></pre>
+            <p>👉 File Name: <code>database_leak.bat</code></p>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">🔥 Ultimate Hacker Show Script (All-in-One)</h2>
+            <pre><code>@echo off
+title ULTIMATE HACKER CONTROL PANEL
+mode con: cols=120 lines=30
+color 0a
+
+:: Fullscreen
+powershell -command "&{$wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('%{ENTER}') }"
+
+:MAIN
+cls
+echo ============================================================
+echo           ULTIMATE HACKER CONTROL PANEL v5.0
+echo ============================================================
+echo.
+echo [1] Initiate System Breach
+echo [2] IP Tracking
+echo [3] Password Cracking
+echo [4] Database Leak
+echo [5] Multi-Terminal Attack
+echo [0] Exit
+echo.
+set /p choice=Select Option: 
+
+if %choice%==1 goto BREACH
+if %choice%==2 goto IP
+if %choice%==3 goto CRACK
+if %choice%==4 goto LEAK
+if %choice%==5 goto MULTI
+if %choice%==0 exit
+
+goto MAIN
+
+:BREACH
+cls
+echo [*] Initializing breach...
+ping localhost -n 2 >nul
+echo [*] Bypassing firewall...
+ping localhost -n 2 >nul
+echo [*] Injecting payload...
+ping localhost -n 2 >nul
+echo.
+echo >>> SYSTEM BREACHED <<<
+pause
+goto MAIN
+
+:IP
+cls
+set /a a=%random% %% 255
+set /a b=%random% %% 255
+set /a c=%random% %% 255
+set /a d=%random% %% 255
+echo [*] Tracking Target...
+ping localhost -n 2 >nul
+echo IP: %a%.%b%.%c%.%d%
+echo LOCATION: UNKNOWN
+echo STATUS: LOCKED
+pause
+goto MAIN
+
+:CRACK
+cls
+echo PASSWORD CRACKING...
+setlocal enabledelayedexpansion
+set "bar="
+for /l %%i in (1,1,25) do (
+ set "bar=!bar!#"
+ cls
+ echo Cracking: !bar!
+ ping localhost -n 1 >nul
+)
+endlocal
+echo.
+echo PASSWORD FOUND: admin123
+pause
+goto MAIN
+
+:LEAK
+cls
+echo DATA LEAK IN PROGRESS...
+:LOOP
+set /a id=%random% %% 9999
+echo USER: user%id% ^| PASS: pass%id%
+ping localhost -n 1 >nul
+goto LOOP
+
+:MULTI
+start cmd /k "color 0a && title TRACKER && ping localhost -t"
+start cmd /k "color 0a && title SCAN && systeminfo"
+start cmd /k "color 0a && title NETWORK && ping google.com -t"
+echo Multi-terminal deployed!
+pause
+goto MAIN</code></pre>
+            <p>👉 File Name: <code>ultimate_hacker.bat</code></p>
+
+            <hr style="border-color: #333; margin: 3rem 0;">
+
+            <h2 class="emoji-heading">🎬 Hacker OS Simulator (Windows app style)</h2>
+            <p>এইটা তৈরি হবে batch + PowerShell + fake GUI vibe দিয়ে।</p>
+            <pre><code>@echo off
+title HACKER OS SIMULATOR v1.0
+mode con: cols=120 lines=30
+color 0a
+
+:: Fullscreen
+powershell -command "&{$wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys('%{ENTER}') }"
+
+:MAIN
+cls
+echo ============================================================
+echo                 HACKER OS SIMULATOR
+echo ============================================================
+echo.
+echo [1] Terminal Hack
+echo [2] IP Tracker
+echo [3] Password Cracker
+echo [4] Database Leak
+echo [5] Launch Multi-Terminals
+echo [0] EXIT
+echo.
+set /p choice=Choose your tool: 
+
+if "%choice%"=="1" goto TERMINAL
+if "%choice%"=="2" goto IPTRACK
+if "%choice%"=="3" goto PASSCRACK
+if "%choice%"=="4" goto DBLEAK
+if "%choice%"=="5" goto MULTI
+if "%choice%"=="0" exit
+goto MAIN
+
+:TERMINAL
+cls
+echo Launching fake hacker terminal...
+ping localhost -n 2 >nul
+start cmd /k "color 0a && title HACKER TERMINAL && echo SYSTEM BREACH ACTIVE && ping localhost -t"
+goto MAIN
+
+:IPTRACK
+cls
+set /a a=%random% %% 255
+set /a b=%random% %% 255
+set /a c=%random% %% 255
+set /a d=%random% %% 255
+echo Tracking target IP...
+ping localhost -n 2 >nul
+echo IP: %a%.%b%.%c%.%d%
+echo COUNTRY: USA
+echo CITY: NEW YORK
+echo STATUS: LOCKED
+pause
+goto MAIN
+
+:PASSCRACK
+cls
+echo PASSWORD CRACKING...
+setlocal enabledelayedexpansion
+set "bar="
+for /l %%i in (1,1,25) do (
+    set "bar=!bar!#"
+    cls
+    echo CRACKING PASSWORD: !bar!
+    ping localhost -n 1 >nul
+)
+endlocal
+echo PASSWORD FOUND: admin123
+pause
+goto MAIN
+
+:DBLEAK
+cls
+echo DATABASE LEAK IN PROGRESS...
+:LEAK
+set /a id=%random% %% 9999
+set /a balance=%random% %% 10000
+echo USER: user%id% ^| PASS: pass%id% ^| BALANCE: $%balance%
+ping localhost -n 1 >nul
+goto LEAK
+
+:MULTI
+start cmd /k "color 0a && title TRACKER && ping localhost -t"
+start cmd /k "color 0a && title SCAN && systeminfo"
+start cmd /k "color 0a && title NETWORK && ping google.com -t"
+echo Multi-terminal launched!
+pause
+goto MAIN</code></pre>
+            <p>👉 File Name: <code>hacker_os_simulator.bat</code></p>
+            <div style="text-align:center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid #333; padding-top: 3rem;">
+                <h3 style="color:var(--text-main); margin-bottom: 1.5rem;">Or try the web version I just created:</h3>
+                <a href="hacker_os.html" target="_blank" class="neon-button cyber-pulse" style="font-size: 1.2rem; padding: 1.5rem 3rem;">TRY NEW WEB HACKER OS <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i></a>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer class="cyber-footer" style="padding: 2rem; border-top: 1px solid #222; text-align: center; color: #555;">
+        <p>© 2026 Swagotom | Cyber Security Expert & AI Security Specialist</p>
+    </footer>
+
+    <!-- Vanilla Tilt for 3D hover effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
