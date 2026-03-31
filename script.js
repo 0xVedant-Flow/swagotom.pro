@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2200);
     
     setTimeout(() => {
-        loadingScreen.style.opacity = '0';
+        if (loadingScreen) loadingScreen.style.opacity = '0';
         setTimeout(() => {
-            loadingScreen.style.display = 'none';
+            if (loadingScreen) loadingScreen.style.display = 'none';
             initTyping();
             animateSkillBars(); // Only animate when visible
         }, 1000);
@@ -45,7 +45,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-hamburger.addEventListener('click', () => {
+hamburger?.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     const icon = hamburger.querySelector('i');
     if(navLinks.classList.contains('active')) {
